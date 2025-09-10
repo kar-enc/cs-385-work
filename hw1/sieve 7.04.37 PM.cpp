@@ -47,6 +47,11 @@ void PrimesSieve::sieve() {
     // TODO: write sieve algorithm
     // All instance variables must be initialized by the end of this method.
 
+    //setting all indeces in array to true
+    for (int = 0 ; i < limit ; i++) {
+        is_prime_[i] = true;
+    }
+
     //Rough idea: 
     //  create array ; set all to true ; 
     //  change 0 and 1 to false cuz they arent prime ; 
@@ -66,7 +71,7 @@ int PrimesSieve::num_digits(int num) {
     // Hint: No strings are needed. Keep dividing by 10.
     int digit = 0;
     while (num != 0) {
-        num = num/digit;
+        num = num/10;
         digit++;
     }
 
