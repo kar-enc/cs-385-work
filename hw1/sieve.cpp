@@ -50,7 +50,41 @@ void PrimesSieve::display_primes() const {
     cout << "Primes up to " << limit_ << " : " << endl; 
 
 
-    int primeWidth = num_digits(max_prime_)
+    const int max_prime_width = num_digits(max_prime_width);
+    const int primes_per_row = 80 / (max_prime_width + 1);
+
+    int counter = 0;
+
+    if (num_primes_ <= primes_per_row) {
+        //fits all in one row case ; !!remember start with 2 cuz 0 and 1 arent prime!
+        for (int i =2 ; i <= limit_ ; i++) {
+            if (is_prime_[i] == true) {
+                cout << i;
+                counter++;
+                if (counter < num_primes_) {
+                    cout << ' ';
+                } if (counter / primes_per_row != 0) {
+                    cout << endl;
+                }
+
+            }
+        }
+        cout << endl;
+        
+    } else {
+        //multiple line case need to be right algined 
+        for (int i = 2 ; i <= limit_ ; i++) {
+            if (is_prime_ == true) {
+                cout << setw(max_prime_width) << i;
+                counter++;
+                if (counter / primes_per_row == 0 ) {
+                    cout << endl;
+                } if (counted < num_primes_) {
+                    cout << ' ';
+                }
+            }
+        }
+    }
 
 }
 
