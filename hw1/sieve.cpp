@@ -46,8 +46,11 @@ void PrimesSieve::display_primes() const {
     //  total num of prime nums found ; found through counter
     //  "prime up to 'limit_" ; 
     //  right aligned
-    cout << "Number of primes found: " << total_ << endl;
+    cout << "Number of primes found: " << num_primes_ << endl;
     cout << "Primes up to " << limit_ << " : " << endl; 
+
+
+    int primeWidth = num_digits(max_prime_)
 
 }
 
@@ -80,10 +83,17 @@ void PrimesSieve::sieve() {
         }
     }
 
-    int total_ = 0;
     for (int i = 0 ; i <= limit_ ; i++) {
-        if (is_prime_[i] != '\0') {
-            total++;
+        if (is_prime_[i] != '\0' && is_prime_[i] == true) {
+            num_primes_++;
+        }
+    }
+
+
+    for (int i = limit_ ; i > 0 ; i--) {
+        if (is_prime_[i] == true) {
+            max_prime_ = i;
+            break;
         }
     }
 }
