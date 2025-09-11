@@ -20,6 +20,10 @@ public:
         delete [] is_prime_;
     }
 
+    int num_primes() const {
+        return num_primes_;
+    }
+    
     void display_primes() const;
 
 private:
@@ -46,9 +50,6 @@ void PrimesSieve::display_primes() const {
     //  total num of prime nums found ; found through counter
     //  "prime up to 'limit_" ; 
     //  right aligned
-    cout << "Number of primes found: " << num_primes_ << endl;
-    cout << "Primes up to " << limit_ << ":" << endl; 
-
 
     const int max_prime_width = num_digits(max_prime_);
     const int primes_per_row = 80 / (max_prime_width + 1);
@@ -75,7 +76,7 @@ void PrimesSieve::display_primes() const {
                 counter++;
                 if (counter % primes_per_row == 0 ) {
                     cout << endl;
-                } if (counter < num_primes_) {
+                } else if (counter < num_primes_) {
                     cout << " ";
                 }
             }  
@@ -114,8 +115,9 @@ void PrimesSieve::sieve() {
     }
 
     num_primes_ = 0;
+
     for (int i = 2 ; i <= limit_ ; i++) {
-        if (is_prime_[i] != '\0' && is_prime_[i] == true) {
+        if (is_prime_[i] == true) {
             num_primes_++;
         }
     }
@@ -163,7 +165,13 @@ int main() {
     }
 
     // TODO: write code that uses your class to produce the desired output.
+    
     PrimesSieve sieve(limit);
+    
+    cout << endl;
+    cout << "Number of primes found: " << sieve.num_primes() << endl;
+    cout << "Primes up to " << limit << ":" << endl; 
+
     sieve.display_primes();
 
     return 0;
