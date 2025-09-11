@@ -11,7 +11,6 @@
 #include <limits>
 #include <iomanip>
 
-
 using namespace std;
 
  double sqrt(double num, double epsilon) {
@@ -39,21 +38,31 @@ using namespace std;
         return 1;
     }
     
-    double num = atof(argv[1]);
+    double num;
     double epsilon = 1e-7;
 
+    //testing if the value actually the correct type
+    try {
+        num = stod(argv[1]);
+    } catch (...) {
+        cout << "Error: Value argument must be a double." << endl;
+        return 1;
+    } 
+
+    //error for epsilon ; if theres one is it positive and double
     if (argc == 3) {
         try {
             epsilon = atof(argv[2]);
         } catch (...) {
-            cout << "Epsilon argument must be a positive double." << endl;
+            cout << "Error: Epsilon argument must be a positive double." << endl;
             return 1;
         }
         if (epsilon <= 0) {
-            cout << "Epsilon argument must be a positive double." << endl;
+            cout << "Error: Epsilon argument must be a positive double." << endl;
             return 1;
         }
     }
+
     double ans = sqrt(num, epsilon);
     cout << fixed << setprecision(8) << ans << endl;
     return 0;
