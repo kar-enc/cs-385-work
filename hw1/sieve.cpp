@@ -47,41 +47,40 @@ void PrimesSieve::display_primes() const {
     //  "prime up to 'limit_" ; 
     //  right aligned
     cout << "Number of primes found: " << num_primes_ << endl;
-    cout << "Primes up to " << limit_ << " : " << endl; 
+    cout << "Primes up to " << limit_ << ":" << endl; 
 
 
-    const int max_prime_width = num_digits(max_prime_width);
+    const int max_prime_width = num_digits(max_prime_);
     const int primes_per_row = 80 / (max_prime_width + 1);
 
     int counter = 0;
 
     if (num_primes_ <= primes_per_row) {
         //fits all in one row case ; !!remember start with 2 cuz 0 and 1 arent prime!
-        for (int i =2 ; i <= limit_ ; i++) {
+        for (int i = 2 ; i <= limit_ ; i++) {
             if (is_prime_[i] == true) {
                 cout << i;
                 counter++;
                 if (counter < num_primes_) {
                     cout << ' ';
-                } if (counter / primes_per_row != 0) {
-                    cout << endl;
-                }
-
+                } 
             }
+            cout << endl;
         }
-        cout << endl;
-        
     } else {
         //multiple line case need to be right algined 
         for (int i = 2 ; i <= limit_ ; i++) {
-            if (is_prime_ == true) {
+            if (is_prime_[i] == true) {
                 cout << setw(max_prime_width) << i;
                 counter++;
-                if (counter / primes_per_row == 0 ) {
+                if (counter % primes_per_row == 0 ) {
                     cout << endl;
-                } if (counted < num_primes_) {
+                } if (counter < num_primes_) {
                     cout << ' ';
                 }
+            }
+            if (counter % primes_per_row != 0 ) {
+                cout << endl;
             }
         }
     }
@@ -101,10 +100,8 @@ void PrimesSieve::sieve() {
     is_prime_[0] = false;
     is_prime_[1] = false;
 
-    int counter = 0;
-
     // Starting at 2 until its reach sqrt limit
-    for (int = 2 ; i < sqrt(limit) ; i++) {
+    for (int i = 2 ; i <= sqrt(limit_) ; i++) {
         //only looking at true indeces since after loops runs once some might be false so theres no point in looking in them
         if (is_prime_[i] == true) {
         //setting multiples as false
@@ -112,12 +109,11 @@ void PrimesSieve::sieve() {
             for (int j = i*i ; j <= limit_ ; j += i) {
             //if inside this loop then its a multiple of i and needs to be false
                 is_prime_[j] = false;
-                counter--;
             }
         }
     }
 
-    for (int i = 0 ; i <= limit_ ; i++) {
+    for (int i = 2 ; i <= limit_ ; i++) {
         if (is_prime_[i] != '\0' && is_prime_[i] == true) {
             num_primes_++;
         }
@@ -166,5 +162,8 @@ int main() {
     }
 
     // TODO: write code that uses your class to produce the desired output.
+    PrimesSieve sieve(limit);
+    sieve.display_primes();
+    
     return 0;
 }
