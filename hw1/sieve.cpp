@@ -41,6 +41,14 @@ PrimesSieve::PrimesSieve(int limit) :
 void PrimesSieve::display_primes() const {
     // TODO: write code to display the primes in the format specified in the
     // requirements document.
+
+    //need to include:
+    //  total num of prime nums found ; found through counter
+    //  "prime up to 'limit_" ; 
+    //  right aligned
+    cout << "Number of primes found: " << total_ << endl;
+    cout << "Primes up to " << limit_ << " : " << endl; 
+
 }
 
 void PrimesSieve::sieve() {
@@ -48,7 +56,7 @@ void PrimesSieve::sieve() {
     // All instance variables must be initialized by the end of this method.
 
     // Setting all indeces in array to true
-    for (int = 0 ; i <= limit_ ; i++) {
+    for (int i = 0 ; i <= limit_ ; i++) {
         is_prime_[i] = true;
     }
 
@@ -56,16 +64,26 @@ void PrimesSieve::sieve() {
     is_prime_[0] = false;
     is_prime_[1] = false;
 
+    int counter = 0;
+
     // Starting at 2 until its reach sqrt limit
     for (int = 2 ; i < sqrt(limit) ; i++) {
         //only looking at true indeces since after loops runs once some might be false so theres no point in looking in them
-        if (is_prime_[i] = true) {
+        if (is_prime_[i] == true) {
         //setting multiples as false
         //i*i is used because the first num is 2 and its multiples will elimanate a lot of nums that might potentially be touched in when checking
             for (int j = i*i ; j <= limit_ ; j += i) {
             //if inside this loop then its a multiple of i and needs to be false
                 is_prime_[j] = false;
+                counter--;
             }
+        }
+    }
+
+    int total_ = 0;
+    for (int i = 0 ; i <= limit_ ; i++) {
+        if (is_prime_[i] != '\0') {
+            total++;
         }
     }
 }
