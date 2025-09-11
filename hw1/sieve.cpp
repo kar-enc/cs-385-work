@@ -65,8 +65,8 @@ void PrimesSieve::display_primes() const {
                     cout << " ";
                 } 
             }
-
         }
+        cout << endl;
     } else {
         //multiple line case need to be right algined 
         for (int i = 2 ; i <= limit_ ; i++) {
@@ -78,10 +78,10 @@ void PrimesSieve::display_primes() const {
                 } if (counter < num_primes_) {
                     cout << " ";
                 }
-            }
-            if (counter % primes_per_row != 0 ) {
-                cout << endl;
-            }
+            }  
+        } 
+        if (counter % primes_per_row != 0 ) {
+            cout << endl;
         }
     }
 
