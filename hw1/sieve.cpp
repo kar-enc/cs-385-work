@@ -62,10 +62,10 @@ void PrimesSieve::display_primes() const {
                 cout << i;
                 counter++;
                 if (counter < num_primes_) {
-                    cout << ' ';
+                    cout << " ";
                 } 
             }
-            cout << endl;
+
         }
     } else {
         //multiple line case need to be right algined 
@@ -76,7 +76,7 @@ void PrimesSieve::display_primes() const {
                 if (counter % primes_per_row == 0 ) {
                     cout << endl;
                 } if (counter < num_primes_) {
-                    cout << ' ';
+                    cout << " ";
                 }
             }
             if (counter % primes_per_row != 0 ) {
@@ -113,6 +113,7 @@ void PrimesSieve::sieve() {
         }
     }
 
+    num_primes_ = 0;
     for (int i = 2 ; i <= limit_ ; i++) {
         if (is_prime_[i] != '\0' && is_prime_[i] == true) {
             num_primes_++;
@@ -164,6 +165,6 @@ int main() {
     // TODO: write code that uses your class to produce the desired output.
     PrimesSieve sieve(limit);
     sieve.display_primes();
-    
+
     return 0;
 }
